@@ -13,10 +13,6 @@ class Settings(BaseSettings):
     ENVIRONMENT: Optional[str]
     EMAIL_RESET_TOKEN_EXPIRE_HOURS: int = 1
 
-    FIRST_SUPER_ADMIN_EMAIL: str
-    FIRST_SUPER_ADMIN_PASSWORD: str
-    FIRST_SUPER_ADMIN_ACCOUNT_NAME: str
-
     MAIL_USERNAME: str
     MAIL_PASSWORD: str
 
