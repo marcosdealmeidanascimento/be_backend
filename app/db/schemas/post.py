@@ -7,6 +7,8 @@ from pydantic import UUID4, BaseModel, EmailStr
 # Shared properties
 class PostBase(BaseModel):
     content: Optional[str] = None
+    title: Optional[str] = None
+    user_id: Optional[UUID4] = None
 
 
 # Properties to receive via API on creation

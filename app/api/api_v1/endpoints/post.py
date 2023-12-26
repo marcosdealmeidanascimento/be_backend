@@ -1,3 +1,4 @@
+import re
 from typing import Any, List
 from urllib import response
 
@@ -13,7 +14,7 @@ from app.core.config import settings
 router = APIRouter()
 
 
-@router.get("/", response_model=List[schemas.Post])
+@router.get("/all", response_model=List[schemas.Post])
 async def read_posts(
     db: AsyncSession = Depends(deps.get_db),
     skip: int = 0,
@@ -24,6 +25,7 @@ async def read_posts(
     Retrieve posts.
     """
     posts = await repositories.post.get_multi(db, skip=skip, limit=limit)
+    posts = posts[::-1]
     return posts
 
 
@@ -37,6 +39,7 @@ async def read_posts_me(
     """
     user_id = _.id
     posts = await repositories.post.get_by_user_id(db, user_id=user_id)
+    posts = posts[::-1]
     return posts
 
 
@@ -75,7 +78,7 @@ async def update_post(
     return post
 
 
-@router.get("/{id}", response_model=schemas.Post)
+@router.get("/me/{id}", response_model=schemas.Post)
 async def read_post_by_id(
     *,
     db: AsyncSession = Depends(deps.get_db),
@@ -92,6 +95,38 @@ async def read_post_by_id(
             status_code=404,
             detail="The post with this id does not exist in the system",
         )
+    return post
+
+
+@router.get("/{id}", response_model=schemas.Post)
+async def read_post_by_id(
+    *,
+    db: AsyncSession = Depends(deps.get_db),
+    id: str,
+    _: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Get post by ID.
+    """
+    post = await repositories.post.get(db, id=id)
+    if not post:
+        raise HTTPException(
+            status_code=404,
+            detail="The post with this id does not exist in the system",
+        )
+    return post
+
+
+
+@router.get("/", response_model=schemas.Post)
+async def read_random_post(
+    db: AsyncSession = Depends(deps.get_db),
+    _: models.User = Depends(deps.get_current_active_user)
+) -> Any:
+    """
+    Get random post.
+    """
+    post = await repositories.post.randomPost(db)
     return post
 
 

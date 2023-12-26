@@ -1,5 +1,5 @@
 from typing import Any, Dict, Optional, Union, List
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.repositories.base import CRUDBase
 from app.db.models.post import Post
@@ -36,6 +36,12 @@ class CRUDPost(CRUDBase[Post, PostCreate, PostUpdate]):
         else:
             update_data = obj_in.dict(exclude_unset=True)
         return await super().update(db, db_obj=db_obj, obj_in=update_data)
+    
+
+    async def randomPost(self, db: AsyncSession) -> Post:
+        stmt = select(self.model).order_by(func.random()).limit(1)
+        result = await db.execute(stmt)
+        return result.scalars().first()
     
 
 post = CRUDPost(Post)
