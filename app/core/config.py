@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     MAIL_USERNAME: str
     MAIL_PASSWORD: str
 
+    APP_URL: str
+
     POSTGRES_HOSTNAME: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
