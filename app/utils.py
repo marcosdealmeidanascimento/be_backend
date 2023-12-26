@@ -4,7 +4,6 @@ from typing import Optional
 from jose import jwt
 
 from app.core.config import settings
-from be_backend import app
 
 app_url = settings.APP_URL
 
@@ -66,7 +65,7 @@ def send_simple_message(email, token):
                             <p style="font-weight: 900; font-size: 4rem;">be</p>
                             <p style="font-weight: 400; font-size: 2rem;">Alteração de senha</p>
                             <p style="font-weight: 400; font-size: 1rem; margin-bottom: 10px;">Para alterar a sua senha, clique no botão abaixo. Caso não tenha feito a solicitação, nenhuma ação é necessária.</p>
-                            <a href="http://{app_url}/reset-password?{token}&tk={token}" style="margin-top: 75px; margin-bottom: 25px; text-decoration: none; color: #fff; font-weight: 900; font-size: 2rem; background: #ffcd2e; color: #fff; border-radius: 3px; border-color: #ffcd2e; padding: 5px;">Alterar senha</a>
+                            <a href="http://54.193.213.8/reset-password?{token}&tk={token}" style="margin-top: 75px; margin-bottom: 25px; text-decoration: none; color: #fff; font-weight: 900; font-size: 2rem; background: #ffcd2e; color: #fff; border-radius: 3px; border-color: #ffcd2e; padding: 5px;">Alterar senha</a>
                         </div>
                             
                     </div>
@@ -117,7 +116,7 @@ def send_confirmation(email, token):
                             <p style="font-weight: 900; font-size: 4rem;">be</p>
                             <p style="font-weight: 400; font-size: 2rem;">Bem-vindo</p>
                             <p style="font-weight: 400; font-size: 1rem; margin-bottom: 10px;">Obrigado por se registrar. Para confirmar sua conta, clique no link abaixo. Caso não tenha feito o cadastro, nenhuma ação é necessária</p>
-                            <a href="http://{app_url}/confirm?{token}&tk={token}" style="margin-top: 75px; margin-bottom: 25px; text-decoration: none; color: #fff; font-weight: 900; font-size: 2rem; background: #ffcd2e; color: #fff; border-radius: 3px; border-color: #ffcd2e; padding: 5px;">Confirmar conta</a>
+                            <a href="http://54.193.213.8/confirm?{token}&tk={token}" style="margin-top: 75px; margin-bottom: 25px; text-decoration: none; color: #fff; font-weight: 900; font-size: 2rem; background: #ffcd2e; color: #fff; border-radius: 3px; border-color: #ffcd2e; padding: 5px;">Confirmar conta</a>
                         </div>
                             
                     </div>
