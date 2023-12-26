@@ -35,7 +35,8 @@ def upgrade() -> None:
         RETURNS TRIGGER AS $$
         BEGIN
             UPDATE "user"
-            SET last_post = NEW.created_at
+            SET last_post = NEW.created_at,
+                can_post = FALSE
             WHERE id = NEW.user_id;
             RETURN NEW;
         END;

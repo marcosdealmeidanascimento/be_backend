@@ -4,6 +4,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio import AsyncSession
+from datetime import date, datetime, timedelta
 
 from app.db import repositories, models, schemas
 from app.api import deps
@@ -82,6 +83,9 @@ async def read_user_me(
     """
     Get current user.
     """
+
+    current_user = await repositories.user.can_post(_, user=current_user)
+
     return current_user
 
 

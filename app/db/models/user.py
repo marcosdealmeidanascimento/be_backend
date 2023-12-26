@@ -18,6 +18,7 @@ class User(Base):
     hashed_password = Column(String(255), nullable=False)
     is_admin = Column(Boolean(), default=False)
     last_post = Column(DateTime, nullable=True)
+    can_post = Column(Boolean(), default=True, nullable=True)
     is_active = Column(Boolean(), default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(

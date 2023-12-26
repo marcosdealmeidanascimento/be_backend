@@ -25,6 +25,7 @@ def upgrade() -> None:
         sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.Column("is_admin", sa.Boolean(), nullable=True),
         sa.Column("last_post", sa.DateTime(), nullable=True),
+        sa.Column("can_post", sa.Boolean(), nullable=True),
         sa.Column("created_at", sa.DateTime(), nullable=True),
         sa.Column("updated_at", sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint("id"),

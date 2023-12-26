@@ -9,6 +9,7 @@ class UserBase(BaseModel):
     email: Optional[EmailStr] = None
     is_active: Optional[bool] = False
     last_post: Optional[datetime] = None
+    can_post: Optional[bool] = False
     is_admin: Optional[bool] = False
 
 

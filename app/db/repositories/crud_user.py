@@ -1,5 +1,6 @@
+import time
 from typing import Any, Dict, Optional, Union
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.security import get_password_hash, verify_password
@@ -51,5 +52,19 @@ class CRUDUser(CRUDBase[User, UserCreateNot, UserUpdate]):
     def is_active(self, user: User) -> bool:
         return user.is_active
 
+
+    async def can_post(self, db: AsyncSession, *, user: User) -> bool:
+        if not user.last_post:
+            return user
+
+        if user.last_post + timedelta(hours=10) < datetime.utcnow():
+            db_obj = user
+            db_obj.can_post = True
+            await db.commit()
+            await db.refresh(db_obj)
+            return db_obj
+        
+        return user
+            
 
 user = CRUDUser(User)
