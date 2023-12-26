@@ -59,7 +59,7 @@ def send_simple_message(email, token):
                     </style>
                 </head>
                 <body style="width: 100%;">
-                    <div style="text-align: center; height: 50vh;">
+                    <div style="text-align: center; height: 100vh;">
                         <div>
                             <p style="font-weight: 900; font-size: 4rem;">be</p>
                             <p style="font-weight: 400; font-size: 2rem;">Alteração de senha</p>
@@ -110,7 +110,7 @@ def send_confirmation(email, token):
                     </style>
                 </head>
                 <body style="width: 100%;">
-                    <div style="text-align: center; height: 50vh;">
+                    <div style="text-align: center; height: 100vh;">
                         <div>
                             <p style="font-weight: 900; font-size: 4rem;">be</p>
                             <p style="font-weight: 400; font-size: 2rem;">Bem-vindo</p>
