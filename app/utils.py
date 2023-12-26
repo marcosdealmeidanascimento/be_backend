@@ -35,7 +35,7 @@ def send_simple_message(email, token):
     password = settings.MAIL_PASSWORD
     msg = EmailMessage()
     msg['Subject'] = 'Alterar senha'
-    msg['From'] = "be"
+    msg['From'] = "BE APP"
     msg['to'] = email['email']
     msg.set_content(
         f"""
@@ -86,7 +86,7 @@ def send_confirmation(email, token):
     print(email)
     msg = EmailMessage()
     msg['Subject'] = 'Confirmar cadastro'
-    msg['From'] = "be"
+    msg['From'] = "BE APP"
     msg['to'] = email
     msg.set_content(
         f"""
