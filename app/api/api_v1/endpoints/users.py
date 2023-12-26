@@ -57,7 +57,6 @@ async def update_user_me(
     *,
     db: AsyncSession = Depends(deps.get_db),
     password: str = Body(None),
-    full_name: str = Body(None),
     email: EmailStr = Body(None),
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
@@ -68,8 +67,6 @@ async def update_user_me(
     user_in = schemas.UserUpdate(**current_user_data)
     if password is not None:
         user_in.password = password
-    if full_name is not None:
-        user_in.full_name = full_name
     if email is not None:
         user_in.email = email
     user = await repositories.user.update(db, db_obj=current_user,
@@ -94,7 +91,6 @@ async def create_user_open(
     db: AsyncSession = Depends(deps.get_db),
     password: str = Body(...),
     email: EmailStr = Body(...),
-    full_name: str = Body(None),
 ) -> Any:
     
     """
@@ -114,8 +110,7 @@ async def create_user_open(
     gprt = generate_password_reset_token(email=email)
     send_confirmation(email, gprt)
 
-    user_in = schemas.UserCreate(password=password, email=email,
-                                 full_name=full_name)
+    user_in = schemas.UserCreate(password=password, email=email)
     user = await repositories.user.create(db, obj_in=user_in)
 
     return user

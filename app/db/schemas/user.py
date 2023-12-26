@@ -1,13 +1,14 @@
 from typing import List, Optional # noqa: F401, E261
-# from datetime import datetime
+from datetime import datetime
 from pydantic import UUID4, BaseModel, EmailStr
+from typing import Optional
 
 
 # Shared properties
 class UserBase(BaseModel):
     email: Optional[EmailStr] = None
     is_active: Optional[bool] = False
-    full_name: Optional[str] = None
+    last_post: Optional[datetime] = None
 
 
 class UserCreateNot(UserBase):
@@ -22,7 +23,6 @@ class UserCreate(UserCreateNot):
 
 class UserConfirm(BaseModel):
     email: EmailStr
-    full_name: str
     password: Optional[str] = None
 
 

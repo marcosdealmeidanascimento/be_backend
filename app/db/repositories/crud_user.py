@@ -1,4 +1,5 @@
 from typing import Any, Dict, Optional, Union
+from datetime import datetime
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.security import get_password_hash, verify_password
@@ -19,7 +20,6 @@ class CRUDUser(CRUDBase[User, UserCreateNot, UserUpdate]):
         db_obj = User(
             email=obj_in.email,
             hashed_password=get_password_hash(obj_in.password),
-            full_name=obj_in.full_name,
             is_active=False
         )
         db.add(db_obj)

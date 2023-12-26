@@ -55,7 +55,7 @@ def send_simple_message(email, token):
                             background-color: #000;
                             color: #fff;
                         }
-                    """+"""
+                    """+f"""
                     </style>
                 </head>
                 <body style="width: 100%;">
@@ -106,7 +106,7 @@ def send_confirmation(email, token):
                             background-color: #000;
                             color: #fff;
                         }
-                    """+"""
+                    """+f"""
                     </style>
                 </head>
                 <body style="width: 100%;">

@@ -20,10 +20,11 @@ def upgrade() -> None:
     op.create_table(
         "user",
         sa.Column("id", postgresql.UUID(as_uuid=True), nullable=False),
-        sa.Column("full_name", sa.String(length=255), nullable=True),
         sa.Column("email", sa.String(length=100), nullable=False),
         sa.Column("hashed_password", sa.String(length=255), nullable=False),
         sa.Column("is_active", sa.Boolean(), nullable=True),
+        sa.Column("is_admin", sa.Boolean(), nullable=True),
+        sa.Column("last_post", sa.DateTime(), nullable=True),
         sa.Column("created_at", sa.DateTime(), nullable=True),
         sa.Column("updated_at", sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
